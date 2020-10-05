@@ -1,0 +1,156 @@
+from kivymd.app import MDApp
+from kivymd.uix.label import MDLabel, MDIcon
+from kivy.core.window import Window
+from kivymd.uix.screen import Screen
+from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDIconButton, MDFloatingActionButton
+from kivymd.uix.textfield import MDTextField
+from kivy.lang import Builder
+from helpersstring import username_helper
+from kivymd.uix.dialog import MDDialog
+
+Window.size = (360, 600)
+
+
+class DemoApp(MDApp):
+    def build(self):
+        # ---------------------------------------------------------------------
+
+        # Labels
+
+        label = MDLabel(text='Hello World', halign='center', theme_text_color='Custom',
+                        text_color=(236 / 255.0, 98 / 255.0, 81 / 255.0, 1),
+                        font_style='Button')
+
+        # ---------------------------------------------------------------------
+
+        # Icons
+        # language-python icon
+        icon_label = MDIcon(icon='library-video', halign='center')
+
+        # return icon_label
+
+        # ---------------------------------------------------------------------
+
+        # Pretty Buttons
+        # screen = Screen()
+
+        # btn_flat = MDFlatButton(text='Hello World', pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        btn_flat = MDRectangleFlatButton(text='Hello World', pos_hint={'center_x': 0.5, 'center_y': 0.5})
+
+        # btn_icon = MDIconButton(icon='language-python', pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        btn_icon = MDFloatingActionButton(icon='language-python', pos_hint={'center_x': 0.5, 'center_y': 0.5})
+
+        # screen.add_widget(btn_icon)
+
+        # return screen
+
+        # ---------------------------------------------------------------------
+        # Themes
+        # self.theme_cls.primary_palette = "Yellow"
+        # self.theme_cls.primary_hue = "A700"
+        # self.theme_cls.theme_style = "Dark"
+        #
+        # screen = Screen()
+        # btn_themes = MDRectangleFlatButton(text='Hello World', pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        # screen.add_widget(btn_themes)
+        #
+        # return screen
+
+        # ---------------------------------------------------------------------
+
+        # Input + BUILDER
+
+        self.theme_cls.primary_palette = "Green"
+        self.theme_cls.theme_style = "Dark"
+        screen = Screen()
+        # username = MDTextField(text='Enter username',
+        #                        pos_hint={'center_x': 0.5, 'center_y': 0.5},
+        #                        size_hint_x = None, width=300)
+        button_user = MDRectangleFlatButton(text='Show',
+                                            pos_hint={'center_x': 0.5, 'center_y': 0.4},
+                                            on_release=self.show_data)
+
+        self.username = Builder.load_string(username_helper)
+        screen.add_widget(self.username)
+        screen.add_widget(button_user)
+
+
+
+        return screen
+
+    def show_data(self, obj):
+        if self.username.text is "":
+            check_string = 'Please enter a username'
+        else:
+            check_string = 'Welcome ' + self.username.text
+
+        close_button = MDFlatButton(text='Close', on_release=self.close_dialog)
+        more_button = MDFlatButton(text='More')
+        self.dialog = MDDialog(title='Username Check', text=check_string,
+                          size_hint=(0.75,0.5),
+                          buttons=[close_button, more_button])
+        self.dialog.open()
+
+    def close_dialog(self, obj):
+        self.dialog.dismiss()
+
+
+
+DemoApp().run()
+
+
+
+LISTTTTTT ----------------------------------------------
+
+class DemoApp(MDApp):
+    def build(self):
+        self.theme_cls.theme_style = "Dark"
+
+        scroll_view = ScrollView()
+        list_view = MDList()
+        scroll_view.add_widget(list_view)
+
+        screen = Screen()
+
+        for i in range(20):
+            icon = IconLeftWidget(icon="android")
+            items = ThreeLineAvatarIconListItem(text='Item ' + str(i),
+                                                secondary_text='Hello World',
+                                                tertiary_text='My Friend')
+            items.add_widget(icon)
+            list_view.add_widget(items)
+
+        screen.add_widget(scroll_view)
+
+        return screen
+
+---------------------------------------------------------------------------------
+LIST MUCH EASY
+
+list_helper = """
+Screen:
+    ScrollView:
+        MDList:
+            id: mylist
+
+"""
+
+
+class DemoApp(MDApp):
+    def build(self):
+        self.theme_cls.theme_style = "Dark"
+
+        screen = Builder.load_string(list_helper)
+
+        return screen
+
+    def on_start(self):
+        for i in range(20):
+            items = OneLineListItem(text='Item ' + str(i))
+            self.root.ids.mylist.add_widget(items)
+
+
+DemoApp().run()
+
+
+
