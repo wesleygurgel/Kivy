@@ -152,5 +152,40 @@ class DemoApp(MDApp):
 
 DemoApp().run()
 
+---------------------------------------------------------------------------------
 
+------ DATA TABLE
 
+screen = Screen()
+        table = MDDataTable(pos_hint={'center_x':0.5, 'center_y': 0.5},
+                            size_hint=(0.9,0.7),
+                            check=True,
+                            rows_num=10,
+                            column_data=[
+                                ("No.", dp(18)),
+                                ("Calories", dp(20)),
+                                ("Food", dp(20)),
+                            ],
+                            row_data=[
+                                ("1", "Burger", "300"),
+                                ("2", "Potato", "200"),
+                                ("3", "Refri", "100"),
+                                ("4", "Refri", "100"),
+                                ("5", "Refri", "100"),
+                                ("6", "Refri", "100"),
+                                ("7", "Refri", "100"),
+                                ("8", "Refri", "100"),
+                                ("9", "Refri", "100"),
+                            ]
+                            )
+
+        table.bind(on_check_press=self.check_press)
+        table.bind(on_row_press=self.row_press)
+        screen.add_widget(table)
+        return screen
+
+    def check_press(self, instance_table, current_row):
+        print(instance_table, current_row)
+
+    def row_press(self, instance_table, instance_row):
+        print(instance_table, instance_row)
