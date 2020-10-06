@@ -15,13 +15,11 @@ class MyLayout(BoxLayout):
     scr_mngr = ObjectProperty(None)
 
     def check_data_login(self):
-        username = self.scr_mngr.screen1.username.text
-        password = self.scr_mngr.screen1.password.text
+        jogadores = self.scr_mngr.screen1.jogadores.text
 
-        print(username)
-        print(password)
+        print(jogadores)
 
-        if username == "KivyMD" and password == "kivy":
+        if jogadores != "":
             self.change_screen("screen2")
 
     def change_screen(self, screen, *args):

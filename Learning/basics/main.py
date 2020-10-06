@@ -9,6 +9,8 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 
 # Red Green Blue VALUES
+from kivymd.uix.card import MDCard
+
 Window.clearcolor = (0, 0, 0, 1)
 Window.size = (360, 600)
 
@@ -18,6 +20,10 @@ class MainApp(App):
         # Label
         label = Label(text='This is Batman.', font_size='20sp', bold=True,
                       color=(1, 1, 1, 1))
+
+        # ---------------------------------------------------------------------
+        card = MDCard()
+
 
         # ---------------------------------------------------------------------
 
@@ -38,7 +44,7 @@ class MainApp(App):
         layout_button.add_widget(btn2)
         layout_button.add_widget(btn3)
 
-        # return layout_button
+        return layout_button
 
         # ---------------------------------------------------------------------
 
@@ -88,7 +94,7 @@ class MainApp(App):
         layout_input.add_widget(self.height)
         layout_input.add_widget(button_input)
 
-        return layout_input
+        # return layout_input
 
 
     def submit(self, obj):

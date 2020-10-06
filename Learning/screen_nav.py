@@ -10,11 +10,10 @@ MyLayout:
         Screen:
             id: screen1
             name: 'screen1'
-            username: username
-            password: password
+            jogadores: jogadores
 
             MDCard:
-                size_hint: 0.8, 0.5
+                size_hint: 0.9, 0.9
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 
                 BoxLayout:
@@ -24,7 +23,9 @@ MyLayout:
 
                     MDLabel:
                         text: 'Connexion'
-                        theme_text_color: 'Secondary'
+                        theme_text_color: 'Custom'
+                        font_style: 'Button'
+                        text_color: (1, 0, 0, 1)
                         halign: 'center'
                         size_hint_y: None
                         height: dp(10)
@@ -33,20 +34,22 @@ MyLayout:
                         height: dp(1)
 
                     MDTextField:
-                        id: username
-                        hint_text: "Username "
+                        id: jogadores
+                        multiline: True
+                        hint_text: "Nome dos Jogadores"
+                        mode: "rectangle"
                         helper_text_mode: "on_focus"
+                        helper_text: "Insira o nome e aperte 'Enter'"
 
-                    MDTextField:
-                        id: password
-                        hint_text: "Password "
-                        helper_text_mode: "on_focus"
-                        password: True
-
-                    MDFlatButton:
-                        text: "Connexion"
+                    
+                    MDRectangleFlatIconButton:
+                        icon: 'soccer'
+                        text: "Formar Times"
+                        text_color: 1, 1, 1, 1
                         pos_hint: {'center_x': 0.5}
+                        md_bg_color: 1, 0, 0, 1
                         on_release: root.check_data_login()
+                        
         Screen:
             name: 'screen2'
 
