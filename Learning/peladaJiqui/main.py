@@ -3,7 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.lang import Builder
-from screen_nav import change_screen
+from peladaJiqui.screen_nav import change_screen
 
 Window.size = (360, 600)
 
